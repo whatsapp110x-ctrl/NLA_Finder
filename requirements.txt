@@ -1,2 +1,0 @@
-python-telegram-bot==21.8
-telegram>=0.0.1
