@@ -9,8 +9,8 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 
 # Scanning configuration
 #
-# Set the timeout to infinity (no timeout limit)
-DEFAULT_TIMEOUT = float('inf')  # No timeout limit
+# Set a very large timeout (in seconds) for no timeout limit
+DEFAULT_TIMEOUT = 999999  # Set a very large timeout (in seconds)
 
 # The maximum number of concurrent scanning connections. Increased to 1000.
 MAX_CONCURRENT_SCANS = int(os.getenv("MAX_CONCURRENT_SCANS", "1000"))
