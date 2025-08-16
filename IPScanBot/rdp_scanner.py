@@ -15,9 +15,9 @@ class RDPScanner:
     """Asynchronous RDP port scanner with optional NLA detection."""
 
     def __init__(self, timeout: int = DEFAULT_TIMEOUT) -> None:
-        # If timeout is None, set it to infinity (no timeout)
+        # Ensure timeout is always a valid float, even if None is passed
         if timeout is None:
-            timeout = float('inf')  # No timeout limit (infinity)
+            timeout = 999999  # Set a very large timeout (in seconds)
         self.timeout = float(timeout)
         self.semaphore = asyncio.Semaphore(MAX_CONCURRENT_SCANS)
 
