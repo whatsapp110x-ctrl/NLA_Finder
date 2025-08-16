@@ -1,0 +1,29 @@
+services:
+  # Define a background worker to run the Telegram RDP scanner bot.  Workers
+  # run continuously in the background and are ideal for long‑running tasks
+  # such as bots that poll external APIs.  Note: the free plan is not
+  # available for background workers, so use the starter plan by default.
+  - type: worker
+    name: ipscanbot
+    runtime: python
+    plan: starter
+    # Use pyproject/requirements to install dependencies.  Here we install
+    # python-telegram-bot and other dependencies specified in requirements.txt.
+    buildCommand: pip install -r requirements.txt
+    # Start the bot using the run_forever script to ensure 24/7 operation.
+    # The run_forever.py script launches IPScanBot/main.py and restarts
+    # it automatically if it exits.  This provides an extra layer of
+    # resilience beyond Render's automatic restarts.
+    startCommand: python run_forever.py
+    envVars:
+      # BOT_TOKEN must be provided via Render's environment settings.  Do
+      # not commit secrets to source control.  Set "sync" to false so that
+      # Render does not sync values back to your repository.
+      - key: BOT_TOKEN
+        sync: false
+      # Optional override for concurrency limit.  You may adjust these
+      # values in the Render dashboard without modifying code.
+      - key: MAX_CONCURRENT_SCANS
+        value: "50"
+      - key: DEFAULT_TIMEOUT
+        value: "5"
