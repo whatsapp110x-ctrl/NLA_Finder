@@ -9,17 +9,11 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 
 # Scanning configuration
 #
-# The default timeout for network operations when scanning RDP endpoints.  The
-# timeout can be overridden at runtime by setting the `DEFAULT_TIMEOUT`
-# environment variable to an integer value representing seconds.  If no
-# environment variable is provided the scanner will default to 5 seconds.
-DEFAULT_TIMEOUT = int(os.getenv("DEFAULT_TIMEOUT", "5"))  # seconds
+# Removed timeout limit by setting it to None
+DEFAULT_TIMEOUT = None  # No timeout limit
 
-# The maximum number of concurrent scanning connections.  To better cope with
-# different hosting environments and rate‑limits this value can be configured
-# via the `MAX_CONCURRENT_SCANS` environment variable.  When unset it
-# defaults to 50 concurrent connections.
-MAX_CONCURRENT_SCANS = int(os.getenv("MAX_CONCURRENT_SCANS", "50"))
+# The maximum number of concurrent scanning connections. Increased to 1000.
+MAX_CONCURRENT_SCANS = int(os.getenv("MAX_CONCURRENT_SCANS", "1000"))
 
 # Port used for Remote Desktop Protocol.  Exposed as a constant for
 # completeness even though it rarely changes.
